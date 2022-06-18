@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:maidesiter/AddEditPage.dart';
+import 'package:maidesiter/widgets/DataTableMySqlDemo/DataTableDemo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -26,10 +29,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       home: this._Screen,
+      getPages: [
+        GetPage(name: "/AddEditPage", page: ()=>AddEditPage()
+            ),
+    GetPage(name: "/Home", page: ()=>Home())
+      ],
     );
   }
 }

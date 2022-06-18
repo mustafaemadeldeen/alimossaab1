@@ -1,8 +1,13 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../AddEditPage.dart';
 import 'ButtonBar.dart';
+
 import 'ButtonBar.dart';
-import 'package:maidesiter/Screens/signinorregister.dart';
+import 'package:maidesiter/AddEditPage.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,7 +17,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var _value = true;
+
+  var _value = 1;
   List<String> _wilaya = [
     'Adrar',
     'Chlef',
@@ -84,7 +90,18 @@ class _HomeState extends State<Home> {
   //   "Mistress"
   // ]; //This is the array for dropdown
   late String valueChoose;
+  Future getData()async{
+    var url = 'http://192.168.1.104/php-mysql-flutter-crud/read.php';
+    var response = await http.get(Uri.parse(url));
+    return json.decode(response.body);
+  }
 
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
   @override
   Widget build(BuildContext context) {
     TextEditingController? _texteditingcontroller = TextEditingController();
@@ -200,30 +217,41 @@ class _HomeState extends State<Home> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Radio(
-                            value: true,
+                        Radio (
+                            value: 1,
                             groupValue: _value,
-                            onChanged: (bool? value) {
+                            onChanged: (value) {
                               setState(() {
-                                _value = value!;
+                                _value = 1;
                               });
                             }),
                         Text(
                           'Baby sitter',
-                          style: TextStyle(fontSize: 22, color: Colors.white),
+                          style: TextStyle(fontSize: 13, color: Colors.white),
                         ),
                         Radio(
-                            value: false,
+                            value: 2,
                             groupValue: _value,
-                            onChanged: (bool? value) {
+                            onChanged: ( value) {
                               setState(() {
-                                _value = value!;
+                                _value = 1;
                               });
                             }),
                         Text(
                           'maide',
-                          style: TextStyle(fontSize: 22, color: Colors.white),
-                        )
+                          style: TextStyle(fontSize:13, color: Colors.white),
+                        ),
+                        Radio(
+                            value: 3,
+                            groupValue: _value,
+                            onChanged: ( value) {
+                              setState(() {
+                                _value = 1;
+                              });
+                            }),
+                        Text(
+                          'assistant médical',
+                          style: TextStyle(fontSize: 13, color: Colors.white),)
                       ],
                     )
                   ],
@@ -247,13 +275,52 @@ class _HomeState extends State<Home> {
               //           ],
               //         ),);
               //     }),
-            ],
+              FutureBuilder(
+                future: getData(),
+
+                builder: (context,snapshot){
+                  if(snapshot.hasError) print(snapshot.error);
+
+                  return snapshot.hasData
+                      ? ListView.builder(
+                      itemExtent: 80,
+                    //  itemCount: snapshot.data!.length,
+
+                      itemBuilder: (context,index){
+                        Object? list = snapshot.data;
+                        return ListTile(
+                          leading: GestureDetector(child: Icon(Icons.edit),
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => AddEditPage(),),);
+                              debugPrint('Edit Clicked');
+                            },),
+                           //title: Text(list[index]['lastname']),
+                          // subtitle: Text(list[index]['phone']),
+                          trailing: GestureDetector(child: Icon(Icons.delete),
+                            onTap: (){
+                              setState(() {
+                                var url = 'http://192.168.1.104/php-mysql-flutter-crud/delete.php';
+                                http.post(Uri.parse(url),body: {
+                                //  'id' : list[index]['id'],
+                                });
+                              });
+                              debugPrint('delete Clicked');
+                            },),
+                        );
+                      }
+                  )
+                      : CircularProgressIndicator();
+                },
+              ),
+                ],
           )),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => SignInOrRegister()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddEditPage(),),);
+          debugPrint('Clicked FloatingActionButton Button');
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => DataTableDemo()));
         },
         backgroundColor: Colors.pink,
         child: Icon(Icons.add_circle_outline),
