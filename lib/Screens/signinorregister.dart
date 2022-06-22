@@ -181,7 +181,7 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Login()),
+                            MaterialPageRoute(builder: (context) => Login_page()),
                           );
                         },
                         child: Container(

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:maidesiter/Screens/auth_controller.dart';
 import 'package:maidesiter/Screens/register.dart';
-class Login extends StatefulWidget {
+class Login_page extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _Login_pageState createState() => _Login_pageState();
 }
 
-class _LoginState extends State<Login> {
+class _Login_pageState extends State<Login_page> {
 
 
   @override
   Widget build(BuildContext context) {
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
 
 
-    SystemChrome.setSystemUIOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
     return Scaffold(
@@ -92,9 +95,10 @@ class _LoginState extends State<Login> {
                         height: 50,
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child:const TextField(
+                        child: TextField(
+                          controller: emailController,
                           textAlign: TextAlign.center,
-                          decoration: InputDecoration(
+                          decoration:const InputDecoration(
                               hintText: 'Email',
                               focusedBorder: InputBorder.none,
                               border: InputBorder.none,
@@ -102,7 +106,7 @@ class _LoginState extends State<Login> {
                                   color: Colors.white70
                               )
                           ),
-                          style: TextStyle(fontSize: 16,
+                          style:const TextStyle(fontSize: 16,
                               color: Colors.white),
                         )),
                   ],
@@ -139,9 +143,11 @@ class _LoginState extends State<Login> {
                         height: 50,
                         margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child:const TextField(
+                        child: TextField(
+                          controller: passwordController,
+                          obscureText: true,
                           textAlign: TextAlign.center,
-                          decoration: InputDecoration(
+                          decoration:const InputDecoration(
                             hintText: 'Password',
                             focusedBorder: InputBorder.none,
                             border: InputBorder.none,
@@ -149,7 +155,7 @@ class _LoginState extends State<Login> {
                                 color: Colors.white70
                             ),
                           ),
-                          style: TextStyle(fontSize: 16,
+                          style:const TextStyle(fontSize: 16,
                               color: Colors.white),
                         )),
                   ],
@@ -157,20 +163,25 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50)
+                GestureDetector(
+                 onTap: (){
+                   AuthContreller.instance.Login( emailController.text.trim(), passwordController.text.trim());
+                 },
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(50)
+                    ),
+                    margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    child: Center(
+                        child: Text(
+                          'Login',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black),
+                        )),
                   ),
-                  margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: Center(
-                      child: Text(
-                        'Register',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black),
-                      )),
                 ),
                 SizedBox(
                   height: 10,

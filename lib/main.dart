@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maidesiter/AddEditPage.dart';
+import 'package:maidesiter/Screens/auth_controller.dart';
 import 'package:maidesiter/widgets/DataTableMySqlDemo/DataTableDemo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,13 +14,14 @@ import 'Screens/onboarding.dart';
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp().then((value) => Get.put(AuthContreller()));
   SharedPreferences prefs= await SharedPreferences.getInstance();
   final bool? look = prefs.getBool( 'look');
   Widget _Screen ;
   if(look == null ||look == false){
     _Screen = onboarding();
   }else{
-    _Screen = Home();
+    _Screen = Home( );
   }
   runApp( MyApp(_Screen));
 }

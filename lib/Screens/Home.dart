@@ -10,7 +10,7 @@ import 'ButtonBar.dart';
 import 'package:maidesiter/AddEditPage.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+
 
   @override
   State<Home> createState() => _HomeState();
@@ -18,7 +18,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  var _value = 1;
+
+  var _value ;
   List<String> _wilaya = [
     'Adrar',
     'Chlef',
@@ -119,7 +120,7 @@ class _HomeState extends State<Home> {
                   color: Colors.pink,
                 ),
                 height: 400,
-                padding: EdgeInsets.only(top: 160),
+                padding: EdgeInsets.only(top: 100),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -128,26 +129,33 @@ class _HomeState extends State<Home> {
                       children: <Widget>[
                            Padding(
                              padding: EdgeInsets.only(left: 20,right: 20),
-                             child:Column(children: [
+                             child:Column(
+                               mainAxisAlignment: MainAxisAlignment.center,
+                               children: [
                                DropdownButtonFormField(
-                                
+
+                                 focusColor: Colors.white,
+
                                     dropdownColor: Colors.white,
+
                                  decoration: InputDecoration(
 
-
-                                   border:
-
-                                   OutlineInputBorder(
-
-                                     
+                                   enabledBorder: OutlineInputBorder(
+                                     borderSide: BorderSide(color: Colors.black, width: 1),
                                      borderRadius: BorderRadius.circular(30),
-                                     borderSide: BorderSide(width: 3),
                                    ),
+
+
+                                   border: OutlineInputBorder(
+                                     borderSide: BorderSide(color: Colors.black, width: 1),
+                                     borderRadius: BorderRadius.circular(30),
+                                   ),filled: true,
+                                   fillColor: Colors.white,
                                  ),
                                  items: _wilaya
                                      .map((String item) => DropdownMenuItem<String>(
                                      child: Text(
-                                       item,style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,), ), value: item))
+                                       item,style: TextStyle(fontSize: 22,fontWeight: FontWeight.normal,), ), value: item))
                                      .toList(),
                                  onChanged: (String? value) {
                                    setState(() {
@@ -214,51 +222,136 @@ class _HomeState extends State<Home> {
                         //     )),
                       ],
                     ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+        // Padding(
+        //   padding: EdgeInsets.only(left: 1, right: 1),
+        //   child: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.end,
+        //     children: [
+        //
+        //       Column(
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         children: [
+        //           Expanded(
+        //             child:ListTile(
+        //               title: const Text('Baby sitter'),
+        //               leading: Radio(
+        //                 fillColor: MaterialStateColor.resolveWith((states) => Color(0XFFB63728)),
+        //                 value: 1,
+        //                 groupValue: _value,
+        //                 onChanged: ( value) {
+        //                   setState(() {
+        //                     _value = value;
+        //                   });
+        //                 },
+        //               ),
+        //             ),
+        //           ),
+        //           Expanded(
+        //             child: ListTile(
+        //
+        //               title: const Text('maide'),
+        //               leading: Radio(
+        //                 fillColor: MaterialStateColor.resolveWith((states) => Color(0XFFB63728)),
+        //                 value: 2,
+        //                 groupValue: _value,
+        //                 onChanged: ( value) {
+        //                   setState(() {
+        //                     _value = value;
+        //                   });
+        //                 },
+        //               ),
+        //             ),),
+        //           Expanded(
+        //             child:ListTile(
+        //               title: const Text('assistant médical'),
+        //               leading: Radio(
+        //                 fillColor: MaterialStateColor.resolveWith((states) => Color(0XFFB63728)),
+        //                 value: 3,
+        //                 groupValue: _value,
+        //                 onChanged: ( value) {
+        //                   setState(() {
+        //                     _value = value;
+        //                   });
+        //                 },
+        //               ),
+        //             ),
+        //           ),
+        //
+        //         ],
+        //       )
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Radio (
+                        RadioListTile(
+                            title: const Text('Baby sitter'),
                             value: 1,
                             groupValue: _value,
                             onChanged: (value) {
                               setState(() {
-                                _value = 1;
+                                _value = value;
                               });
                             }),
-                        Text(
-                          'Baby sitter',
-                          style: TextStyle(fontSize: 13, color: Colors.white),
-                        ),
-                        Radio(
+                        RadioListTile(
+                            title: const Text('maide'),
                             value: 2,
                             groupValue: _value,
-                            onChanged: ( value) {
+                            onChanged: (value) {
                               setState(() {
-                                _value = 1;
+                                _value = value;
                               });
                             }),
-                        Text(
-                          'maide',
-                          style: TextStyle(fontSize:13, color: Colors.white),
-                        ),
-                        Radio(
-                            value: 3,
+                        RadioListTile(
+                            title: const Text('assistant médical'),
+                            value:3,
                             groupValue: _value,
-                            onChanged: ( value) {
+                            onChanged: (value) {
                               setState(() {
-                                _value = 1;
+                                _value = value;
                               });
                             }),
-                        Text(
-                          'assistant médical',
-                          style: TextStyle(fontSize: 13, color: Colors.white),)
+                        // Radio (
+                        //     value: 1,
+                        //     groupValue: _value,
+                        //     onChanged: (value) {
+                        //       setState(() {
+                        //         _value = 1;
+                        //       });
+                        //     }),
+                        // Text(
+                        //   'Baby sitter',
+                        //   style: TextStyle(fontSize: 13, color: Colors.black),
+                        // ),
+                        // Radio(
+                        //     value: 2,
+                        //     groupValue: _value,
+                        //     onChanged: ( value) {
+                        //       setState(() {
+                        //         _value = 1;
+                        //       });
+                        //     }),
+                        // Text(
+                        //   'maide',
+                        //   style: TextStyle(fontSize:13, color: Colors.black),
+                        // ),
+                        // Radio(
+                        //     value: 3,
+                        //     groupValue: _value,
+                        //     onChanged: ( value) {
+                        //       setState(() {
+                        //         _value = 1;
+                        //       });
+                        //     }),
+                        // Text(
+                        //   'assistant médical',
+                        //   style: TextStyle(fontSize: 13, color: Colors.black),)
                       ],
                     )
                   ],
                 ),
               ),
 
-              // ListView.builder(
+              ]
+            // ListView.builder(
               //     scrollDirection: Axis.vertical,
               //     shrinkWrap: true,
               //     itemCount: wilaya.length,
@@ -275,44 +368,44 @@ class _HomeState extends State<Home> {
               //           ],
               //         ),);
               //     }),
-              FutureBuilder(
-                future: getData(),
-
-                builder: (context,snapshot){
-                  if(snapshot.hasError) print(snapshot.error);
-
-                  return snapshot.hasData
-                      ? ListView.builder(
-                      itemExtent: 80,
-                    //  itemCount: snapshot.data!.length,
-
-                      itemBuilder: (context,index){
-                        Object? list = snapshot.data;
-                        return ListTile(
-                          leading: GestureDetector(child: Icon(Icons.edit),
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => AddEditPage(),),);
-                              debugPrint('Edit Clicked');
-                            },),
-                           //title: Text(list[index]['lastname']),
-                          // subtitle: Text(list[index]['phone']),
-                          trailing: GestureDetector(child: Icon(Icons.delete),
-                            onTap: (){
-                              setState(() {
-                                var url = 'http://192.168.1.104/php-mysql-flutter-crud/delete.php';
-                                http.post(Uri.parse(url),body: {
-                                //  'id' : list[index]['id'],
-                                });
-                              });
-                              debugPrint('delete Clicked');
-                            },),
-                        );
-                      }
-                  )
-                      : CircularProgressIndicator();
-                },
-              ),
-                ],
+              // FutureBuilder(
+              //   future: getData(),
+              //
+              //   builder: (context,snapshot){
+              //     if(snapshot.hasError) print(snapshot.error);
+              //
+              //     return snapshot.hasData
+              //         ? ListView.builder(
+              //         itemExtent: 80,
+              //       //  itemCount: snapshot.data!.length,
+              //
+              //         itemBuilder: (context,index){
+              //           Object? list = snapshot.data;
+              //           return ListTile(
+              //             leading: GestureDetector(child: Icon(Icons.edit),
+              //               onTap: (){
+              //                 Navigator.push(context, MaterialPageRoute(builder: (context) => AddEditPage(),),);
+              //                 debugPrint('Edit Clicked');
+              //               },),
+              //              //title: Text(list[index]['lastname']),
+              //             // subtitle: Text(list[index]['phone']),
+              //             trailing: GestureDetector(child: Icon(Icons.delete),
+              //               onTap: (){
+              //                 setState(() {
+              //                   var url = 'http://192.168.1.104/php-mysql-flutter-crud/delete.php';
+              //                   http.post(Uri.parse(url),body: {
+              //                   //  'id' : list[index]['id'],
+              //                   });
+              //                 });
+              //                 debugPrint('delete Clicked');
+              //               },),
+              //           );
+              //         }
+              //     )
+              //         : CircularProgressIndicator();
+              //   },
+              // ),
+              //   ],
           )),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
@@ -327,6 +420,25 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: ButtomBar(),
+    );
+  }
+}
+class nextpage extends StatelessWidget {
+  late String firstName,lastName,phone,address;
+  nextpage({required this.firstName,required this.lastName , required this.phone, required this.address});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body:ListView(
+        children: [
+          Text("firstName : "+ firstName.toString()),
+          Text("lastName : "+ lastName.toString()),
+          Text("phone : "+ phone.toString()),
+          Text("address : "+ address.toString()),
+
+        ],
+      ) ,
     );
   }
 }

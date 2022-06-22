@@ -132,9 +132,13 @@ class _AddEditPageState extends State<AddEditPage> {
 
               onPressed: (){
                 setState(() {
-                  addUpdateData();
+                  nextpage(firstName: '', phone: '', lastName: '', address: '',);
                 });
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Home(),),);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => nextpage(firstName: firstName.text, lastName: lastName.text, phone: phone.text ,address: address.text),),).whenComplete(() =>
+                {firstName.clear(),
+                lastName.clear(),
+                phone.clear(),
+                address.clear()});
                 debugPrint('Clicked RaisedButton Button');
               },
 

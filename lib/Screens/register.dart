@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'auth_controller.dart';
 import 'login.dart';
 
 class Register extends StatefulWidget {
@@ -9,6 +10,11 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  var FirstNameController = TextEditingController();
+  var LastNameController = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+
 
   String email = "";
   String password = "";
@@ -108,9 +114,10 @@ class _RegisterState extends State<Register> {
                         height: 50,
                         margin:const EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding:const EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child:const TextField(
+                        child: TextField(
+                          controller: emailController,
                           textAlign: TextAlign.center,
-                          decoration: InputDecoration(
+                          decoration:const InputDecoration(
                               hintText: 'Email',
                               focusedBorder: InputBorder.none,
                               border: InputBorder.none,
@@ -157,9 +164,10 @@ class _RegisterState extends State<Register> {
                         height: 50,
                         margin:const EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding:const EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child:const TextField(
+                        child: TextField(
                           textAlign: TextAlign.center,
-                          decoration: InputDecoration(
+                          controller: FirstNameController,
+                          decoration:const InputDecoration(
                               hintText: 'First Name',
                               focusedBorder: InputBorder.none,
                               border: InputBorder.none,
@@ -205,9 +213,10 @@ class _RegisterState extends State<Register> {
                         height: 50,
                         margin:const EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding:const EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child:const TextField(
+                        child: TextField(
+                          controller: LastNameController,
                           textAlign: TextAlign.center,
-                          decoration: InputDecoration(
+                          decoration:const InputDecoration(
                               hintText: 'Last Name',
                               focusedBorder: InputBorder.none,
                               border: InputBorder.none,
@@ -215,7 +224,7 @@ class _RegisterState extends State<Register> {
                                   color: Colors.white70
                               )
                           ),
-                          style: TextStyle(fontSize: 16,
+                          style:const TextStyle(fontSize: 16,
                               color: Colors.white),
                         )),
                   ],
@@ -300,9 +309,10 @@ class _RegisterState extends State<Register> {
                         height: 50,
                         margin:const EdgeInsets.fromLTRB(30, 0, 30, 0),
                         padding:const EdgeInsets.fromLTRB(0, 10, 0, 5),
-                        child:const TextField(
+                        child: TextField(
+                          controller: passwordController,
                           textAlign: TextAlign.center,
-                          decoration: InputDecoration(
+                          decoration:const InputDecoration(
                             hintText: 'Password',
                             focusedBorder: InputBorder.none,
                             border: InputBorder.none,
@@ -310,7 +320,7 @@ class _RegisterState extends State<Register> {
                                 color: Colors.white70
                             ),
                           ),
-                          style: TextStyle(fontSize: 16,
+                          style:const TextStyle(fontSize: 16,
                               color: Colors.white),
                         )),
                   ],
@@ -318,20 +328,25 @@ class _RegisterState extends State<Register> {
                const SizedBox(
                   height: 10,
                 ),
-                Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50)
+                GestureDetector(
+                  onTap: (){
+                    AuthContreller.instance.register(emailController.text.trim(), passwordController.text.trim());
+                  },
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(50)
+                    ),
+                    margin:const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    child:const Center(
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black),
+                        )),
                   ),
-                  margin:const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child:const Center(
-                      child: Text(
-                        'Register',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black),
-                      )),
                 ),
                const SizedBox(
                   height: 10,
@@ -354,7 +369,7 @@ class _RegisterState extends State<Register> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Login()),
+                      MaterialPageRoute(builder: (context) => Login_page()),
                     );
                   },
                   child: Container(
