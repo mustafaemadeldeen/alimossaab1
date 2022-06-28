@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "66865014388",
+    "project_id": "baby-3610a",
+    "storage_bucket": "baby-3610a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66865014388:android:951a03c5f42ecfc9fa1321",
+        "android_client_info": {
+          "package_name": "com.example.maidesiter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66865014388-jchhhnk1sn17t8qk6ivriue5tsdvk1p0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1MMLKwAjx86-OT4yZeWxvyM4H3mFvSvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66865014388-jchhhnk1sn17t8qk6ivriue5tsdvk1p0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
