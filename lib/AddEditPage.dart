@@ -1,9 +1,14 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:maidesiter/Screens/Home.dart';
-
+import 'package:firebase_database/firebase_database.dart';
+import 'package:maidesiter/Screens/user.dart';
 class AddEditPage extends StatefulWidget {
+
   //   final List list;
   //    final int index;
   //
@@ -19,36 +24,38 @@ class _AddEditPageState extends State<AddEditPage> {
   TextEditingController lastName = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController address = TextEditingController();
+  TextEditingController job = TextEditingController();
 
+  CollectionReference ref = FirebaseFirestore.instance.collection('notes');
   bool editMode = false;
+  final fb = FirebaseDatabase.instance;
 
-
-  addUpdateData(){
-    if(editMode){
-      var url = 'http://192.168.1.104/php-mysql-flutter-crud/edit.php';
-      http.post(Uri.parse(url),body: {
-        'fistname' : firstName.text,
-     //   'id' : widget.list[widget.index]['id'],
-        'lastname' : lastName.text,
-        'phone' : phone.text,
-        'address' : address.text,
-      });
-    }else{
-      var url = 'http://192.168.1.104/php-mysql-flutter-crud/add.php';
-      http.post(Uri.parse(url),body: {
-        'fistname' : firstName.text,
-        'lastname' : lastName.text,
-        'phone' : phone.text,
-        'address' : address.text,
-      });
-    }
-
-  }
+  // addUpdateData(){
+  //   if(editMode){
+  //     var url = 'http://192.168.1.104/php-mysql-flutter-crud/edit.php';
+  //     http.post(Uri.parse(url),body: {
+  //       'fistname' : firstName.text,
+  //    //   'id' : widget.list[widget.index]['id'],
+  //       'lastname' : lastName.text,
+  //       'phone' : phone.text,
+  //       'address' : address.text,
+  //     });
+  //   }else{
+  //     var url = 'http://192.168.1.104/php-mysql-flutter-crud/add.php';
+  //     http.post(Uri.parse(url),body: {
+  //       'fistname' : firstName.text,
+  //       'lastname' : lastName.text,
+  //       'phone' : phone.text,
+  //       'address' : address.text,
+  //     });
+  //   }
+  //
+  // }
 
 
   @override
   void initState() {
-    super.initState();
+   // super.initState();
     // if(widget.index != null){
     //   editMode = true;
     //   firstName.text = widget.list[widget.index]['fistname'];
@@ -62,6 +69,10 @@ class _AddEditPageState extends State<AddEditPage> {
 
   @override
   Widget build(BuildContext context) {
+    // var rng = Random();
+    // var k = rng.nextInt(10000);
+    //
+    // final ref = fb.ref().child('todos/$k');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pink,
@@ -100,7 +111,7 @@ class _AddEditPageState extends State<AddEditPage> {
             child: TextField(
 
               controller: phone,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
 
                 border: OutlineInputBorder(
@@ -126,20 +137,48 @@ class _AddEditPageState extends State<AddEditPage> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: job,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.pink),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                labelText: 'job',
+              ),
+            ),
+          ),
 
           Padding(padding: EdgeInsets.all(8),
             child: RaisedButton(
 
               onPressed: (){
-                setState(() {
-                  nextpage(firstName: '', phone: '', lastName: '', address: '',);
-                });
-                Navigator.push(context, MaterialPageRoute(builder: (context) => nextpage(firstName: firstName.text, lastName: lastName.text, phone: phone.text ,address: address.text),),).whenComplete(() =>
-                {firstName.clear(),
-                lastName.clear(),
-                phone.clear(),
-                address.clear()});
-                debugPrint('Clicked RaisedButton Button');
+
+                final user = User(firstName: firstName.text, lastName: lastName.text, phone:int.parse(phone.text) , address: address.text, job: job.text);
+                firstName.text='';
+                lastName.text='';
+                phone.text='';
+                address.text='';
+                job.text='';
+                addUser(user);Navigator.pushReplacement(context, MaterialPageRoute(builder:(_)=>Home(),),).whenComplete(() =>
+                    {firstName.clear(),
+                      lastName.clear(),
+                      phone.clear(),
+                      address.clear()});
+                    debugPrint('Clicked RaisedButton Button');
+
+                // setState(() {
+                // ref.set({"title":firstName.text,
+                // "subtitle":lastName.text}).asStream();Navigator.pushReplacement(context, MaterialPageRoute(builder:(_)=>Home(),),).whenComplete(() =>
+                // {firstName.clear(),
+                //   lastName.clear(),
+                //   phone.clear(),
+                //   address.clear()});
+                // debugPrint('Clicked RaisedButton Button');
+                // });
+               // Navigator.push(context, MaterialPageRoute(builder: (context) => Home(),),)
               },
 
               color: Colors.pink,
