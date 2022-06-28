@@ -3,27 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maidesiter/AddEditPage.dart';
 import 'package:maidesiter/Screens/auth_controller.dart';
+import 'package:maidesiter/Screens/cv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 import 'Screens/Home.dart';
 import 'Screens/onboarding.dart';
 
 // new
 
-void main()async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp().then((value) => Get.put(AuthContreller()));
-  SharedPreferences prefs= await SharedPreferences.getInstance();
-  final bool? look = prefs.getBool( 'look');
-  Widget _Screen ;
-  if(look == null ||look == false){
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  final bool? look = prefs.getBool('look');
+  Widget _Screen;
+  if (look == null || look == false) {
     _Screen = onboarding();
-  }else{
-    _Screen = Home( );
+  } else {
+    _Screen = Home();
   }
-  runApp( MyApp(_Screen));
+  runApp(MyApp(_Screen));
 }
+
 class MyApp extends StatelessWidget {
   final Widget _Screen;
 
@@ -36,11 +37,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: this._Screen,
       getPages: [
-        GetPage(name: "/AddEditPage", page: ()=>AddEditPage()
-            ),
-    GetPage(name: "/Home", page: ()=>Home())
+        GetPage(name: "/AddEditPage", page: () => AddEditPage()),
+        GetPage(name: "/Home", page: () => Home())
       ],
+      routes: {
+        '/cv-route': (context) => const cv(),
+      },
     );
   }
 }
-

@@ -16,16 +16,12 @@ import 'ButtonBar.dart';
 import 'package:maidesiter/AddEditPage.dart';
 
 class Home extends StatefulWidget {
-
-
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-
-
-  var _value ;
+  var _value;
   List<String> _wilaya = [
     'Adrar',
     'Chlef',
@@ -115,22 +111,19 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
-   // final ref = fb.ref().child('todos');
-List<User> allusers =[];
-
+    // final ref = fb.ref().child('todos');
+    List<User> allusers = [];
 
     return Scaffold(
-      body: Column(
-      children: [
+      body: Column(children: [
         Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0),
           ),
-
           color: Colors.pink,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -138,55 +131,76 @@ List<User> allusers =[];
             children: [
               Stack(
                 children: <Widget>[
-                     Padding(
-                       padding: EdgeInsets.only(left: 20,right: 20),
-                       child:Column(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                         DropdownButtonFormField(
-
-                           focusColor: Colors.white,
-
-                              dropdownColor: Colors.white,
-
-                           decoration: InputDecoration(
-
-                             enabledBorder: OutlineInputBorder(
-                               borderSide: BorderSide(color: Colors.black, width: 1),
-                               borderRadius: BorderRadius.circular(30),
-                             ),
-
-
-                             border: OutlineInputBorder(
-                               borderSide: BorderSide(color: Colors.black, width: 1),
-                               borderRadius: BorderRadius.circular(30),
-                             ),filled: true,
-                             fillColor: Colors.white,
-                           ),
-                           items: _wilaya
-                               .map((String item) => DropdownMenuItem<String>(
-                               child: Text(
-                                 item,style: TextStyle(fontSize: 22,fontWeight: FontWeight.normal,), ), value: item))
-                               .toList(),
-                           onChanged: (String? value) {
-                             setState(() {
-                               print("previous ${this._selectwilaya}");
-                               print("selected $value");
-                               this._selectwilaya = value!;
-                             });
-                           },
-                           value: _selectwilaya,
-                         ),
-                         SizedBox(height: 12,),
-                         FlatButton(
-                           color: Colors.white,
-                           onPressed: (){}, child: Text('search',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,),),shape: RoundedRectangleBorder(
-                           borderRadius: BorderRadius.all(Radius.circular(30.0),),side: BorderSide(color: Colors.black,width: 1, ),
-                         ),height: 50,minWidth: 400,)
-                       ],)
-
-                  ),
-                 //
+                  Padding(
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DropdownButtonFormField(
+                            focusColor: Colors.white,
+                            dropdownColor: Colors.white,
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 1),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 1),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                            items: _wilaya
+                                .map((String item) => DropdownMenuItem<String>(
+                                    child: Text(
+                                      item,
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                    ),
+                                    value: item))
+                                .toList(),
+                            onChanged: (String? value) {
+                              setState(() {
+                                print("previous ${this._selectwilaya}");
+                                print("selected $value");
+                                this._selectwilaya = value!;
+                              });
+                            },
+                            value: _selectwilaya,
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          FlatButton(
+                            color: Colors.white,
+                            onPressed: () {},
+                            child: Text(
+                              'search',
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30.0),
+                              ),
+                              side: BorderSide(
+                                color: Colors.black,
+                                width: 1,
+                              ),
+                            ),
+                            height: 50,
+                            minWidth: 400,
+                          )
+                        ],
+                      )),
+                  //
                   // Container(
                   //     width: double.infinity,
                   //     margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
@@ -233,63 +247,63 @@ List<User> allusers =[];
                   //     )),
                 ],
               ),
-        // Padding(
-        //   padding: EdgeInsets.only(left: 1, right: 1),
-        //   child: Column(
-        //     crossAxisAlignment: CrossAxisAlignment.end,
-        //     children: [
-        //
-        //       Column(
-        //         mainAxisAlignment: MainAxisAlignment.center,
-        //         children: [
-        //           Expanded(
-        //             child:ListTile(
-        //               title: const Text('Baby sitter'),
-        //               leading: Radio(
-        //                 fillColor: MaterialStateColor.resolveWith((states) => Color(0XFFB63728)),
-        //                 value: 1,
-        //                 groupValue: _value,
-        //                 onChanged: ( value) {
-        //                   setState(() {
-        //                     _value = value;
-        //                   });
-        //                 },
-        //               ),
-        //             ),
-        //           ),
-        //           Expanded(
-        //             child: ListTile(
-        //
-        //               title: const Text('maide'),
-        //               leading: Radio(
-        //                 fillColor: MaterialStateColor.resolveWith((states) => Color(0XFFB63728)),
-        //                 value: 2,
-        //                 groupValue: _value,
-        //                 onChanged: ( value) {
-        //                   setState(() {
-        //                     _value = value;
-        //                   });
-        //                 },
-        //               ),
-        //             ),),
-        //           Expanded(
-        //             child:ListTile(
-        //               title: const Text('assistant médical'),
-        //               leading: Radio(
-        //                 fillColor: MaterialStateColor.resolveWith((states) => Color(0XFFB63728)),
-        //                 value: 3,
-        //                 groupValue: _value,
-        //                 onChanged: ( value) {
-        //                   setState(() {
-        //                     _value = value;
-        //                   });
-        //                 },
-        //               ),
-        //             ),
-        //           ),
-        //
-        //         ],
-        //       )
+              // Padding(
+              //   padding: EdgeInsets.only(left: 1, right: 1),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.end,
+              //     children: [
+              //
+              //       Column(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Expanded(
+              //             child:ListTile(
+              //               title: const Text('Baby sitter'),
+              //               leading: Radio(
+              //                 fillColor: MaterialStateColor.resolveWith((states) => Color(0XFFB63728)),
+              //                 value: 1,
+              //                 groupValue: _value,
+              //                 onChanged: ( value) {
+              //                   setState(() {
+              //                     _value = value;
+              //                   });
+              //                 },
+              //               ),
+              //             ),
+              //           ),
+              //           Expanded(
+              //             child: ListTile(
+              //
+              //               title: const Text('maide'),
+              //               leading: Radio(
+              //                 fillColor: MaterialStateColor.resolveWith((states) => Color(0XFFB63728)),
+              //                 value: 2,
+              //                 groupValue: _value,
+              //                 onChanged: ( value) {
+              //                   setState(() {
+              //                     _value = value;
+              //                   });
+              //                 },
+              //               ),
+              //             ),),
+              //           Expanded(
+              //             child:ListTile(
+              //               title: const Text('assistant médical'),
+              //               leading: Radio(
+              //                 fillColor: MaterialStateColor.resolveWith((states) => Color(0XFFB63728)),
+              //                 value: 3,
+              //                 groupValue: _value,
+              //                 onChanged: ( value) {
+              //                   setState(() {
+              //                     _value = value;
+              //                   });
+              //                 },
+              //               ),
+              //             ),
+              //           ),
+              //
+              //         ],
+              //       )
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -313,7 +327,7 @@ List<User> allusers =[];
                       }),
                   RadioListTile(
                       title: const Text('assistant médical'),
-                      value:3,
+                      value: 3,
                       groupValue: _value,
                       onChanged: (value) {
                         setState(() {
@@ -360,227 +374,247 @@ List<User> allusers =[];
             ],
           ),
         ),
-    // StreamBuilder(
-    //     stream: _userStream,
-    //     builder: (BuildContext context ,AsyncSnapshot<QuerySnapshot> snapshot){
-    //       if(snapshot.hasError){
-    //         return Text('something is wrong');}
-    //       if(snapshot.connectionState == ConnectionState.waiting){
-    //         return Center(
-    //           child: CircularProgressIndicator(),
-    //         )   ;       }
-    //       return Container(
-    //           decoration: BoxDecoration(
-    //           borderRadius: BorderRadius.circular(12),
-    //       ),
-    //       child: ListView.builder(
-    // itemCount: snapshot.data!.docs.length,
-    // itemBuilder: (_, index) { return GestureDetector(
-    //   onTap: () {
-    //     Navigator.pushReplacement(
-    //       context,
-    //       MaterialPageRoute(
-    //         builder: (_) =>
-    //             AddEditPage(docid: snapshot.data!.docs[index]),
-    //       ),
-    //     );
-    //   },
-    //   child: Column(
-    //     children: [
-    //       SizedBox(
-    //         height: 4,
-    //       ),
-    //       Padding(
-    //         padding: EdgeInsets.only(
-    //           left: 3,
-    //           right: 3,
-    //         ),
-    //         child: ListTile(
-    //           shape: RoundedRectangleBorder(
-    //             borderRadius: BorderRadius.circular(10),
-    //             side: BorderSide(
-    //               color: Colors.black,
-    //             ),
-    //           ),
-    //           title: Text(
-    //             snapshot.data!.docChanges[index].doc['title'],
-    //             style: TextStyle(
-    //               fontSize: 20,
-    //             ),
-    //           ),
-    //           subtitle: Text(
-    //             snapshot.data!.docChanges[index].doc['content'],
-    //             style: TextStyle(
-    //               fontSize: 15,
-    //             ),
-    //           ),
-    //           contentPadding: EdgeInsets.symmetric(
-    //             vertical: 12,
-    //             horizontal: 16,
-    //           ),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
-    // },
-    //       )
-    //       );
-    //     } )
-    //
-         StreamBuilder<QuerySnapshot>(
-       stream: FirebaseFirestore.instance.collection('users').orderBy('firstName').snapshots(),
-       builder: (context ,AsyncSnapshot<QuerySnapshot>  snp){
-         if(snp.hasError){
-           return Center(child: Text('Errors'),);
-         }
-         if(snp.hasData){
-           allusers = snp.data!.docs.map((doc) => User.FromJson(doc.data() as Map<String,dynamic>)).toList();
-           return SizedBox(
-             height: 340,
-             child: ListView.builder(
-               shrinkWrap: true,
-               itemCount: allusers.length,
-               itemBuilder:(context , index){
-                 return Card(
-                   child: ListTile(
-                     title: Text(allusers[index].firstName!,style: TextStyle(fontSize: 23),),
-                    // subtitle: Text(allusers[index].lastName!,style: TextStyle(fontSize: 13)),
-                     trailing: TextButton(
-                       onPressed: (){
-                         Navigator.push(context, MaterialPageRoute(builder:(_)=>cv(),),);
-                       },
-                       child: Icon(Icons.navigate_next),
-                     ),
-                   ),
-                 );
-               } ,),
-           );
-         }else{return CircularProgressIndicator();}
-       })
+        // StreamBuilder(
+        //     stream: _userStream,
+        //     builder: (BuildContext context ,AsyncSnapshot<QuerySnapshot> snapshot){
+        //       if(snapshot.hasError){
+        //         return Text('something is wrong');}
+        //       if(snapshot.connectionState == ConnectionState.waiting){
+        //         return Center(
+        //           child: CircularProgressIndicator(),
+        //         )   ;       }
+        //       return Container(
+        //           decoration: BoxDecoration(
+        //           borderRadius: BorderRadius.circular(12),
+        //       ),
+        //       child: ListView.builder(
+        // itemCount: snapshot.data!.docs.length,
+        // itemBuilder: (_, index) { return GestureDetector(
+        //   onTap: () {
+        //     Navigator.pushReplacement(
+        //       context,
+        //       MaterialPageRoute(
+        //         builder: (_) =>
+        //             AddEditPage(docid: snapshot.data!.docs[index]),
+        //       ),
+        //     );
+        //   },
+        //   child: Column(
+        //     children: [
+        //       SizedBox(
+        //         height: 4,
+        //       ),
+        //       Padding(
+        //         padding: EdgeInsets.only(
+        //           left: 3,
+        //           right: 3,
+        //         ),
+        //         child: ListTile(
+        //           shape: RoundedRectangleBorder(
+        //             borderRadius: BorderRadius.circular(10),
+        //             side: BorderSide(
+        //               color: Colors.black,
+        //             ),
+        //           ),
+        //           title: Text(
+        //             snapshot.data!.docChanges[index].doc['title'],
+        //             style: TextStyle(
+        //               fontSize: 20,
+        //             ),
+        //           ),
+        //           subtitle: Text(
+        //             snapshot.data!.docChanges[index].doc['content'],
+        //             style: TextStyle(
+        //               fontSize: 15,
+        //             ),
+        //           ),
+        //           contentPadding: EdgeInsets.symmetric(
+        //             vertical: 12,
+        //             horizontal: 16,
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // );
+        // },
+        //       )
+        //       );
+        //     } )
+        //
+        StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection('users')
+                .orderBy('firstName')
+                .snapshots(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snp) {
+              if (snp.hasError) {
+                return Center(
+                  child: Text('Errors'),
+                );
+              }
+              if (snp.hasData) {
+                allusers = snp.data!.docs
+                    .map((doc) =>
+                        User.FromJson(doc.data() as Map<String, dynamic>))
+                    .toList();
+                return SizedBox(
+                  height: 340,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: allusers.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        child: ListTile(
+                          title: Text(
+                            allusers[index].firstName!,
+                            style: TextStyle(fontSize: 23),
+                          ),
+                          // subtitle: Text(allusers[index].lastName!,style: TextStyle(fontSize: 13)),
+                          trailing: TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/cv-routes',
+                                  arguments: {
+                                    'firstName': allusers[index].firstName,
+                                    'lastName': allusers[index].lastName,
+                                    'phone': allusers[index].phone,
+                                    'address': allusers[index].address,
+                                    'job': allusers[index].job,
+                                  });
+                            },
+                            child: Icon(Icons.navigate_next),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            })
 
-    //           FirebaseAnimatedList(
-    //             shrinkWrap: true,
-    // query: ref,
-    // scrollDirection: Axis.vertical,
-    // itemBuilder: (context, snapshot, animation, index) {
-    // var v =
-    // snapshot.value.toString(); // {subtitle: webfun, title: subscribe}
-    //
-    // g = v.replaceAll(
-    // RegExp("{|}|subtitle: |title: "), ""); // webfun, subscribe
-    // g.trim();
-    //
-    // l = g.split(','); // [webfun,  subscribe}]
-    //
-    // return GestureDetector(
-    // onTap: () {
-    // setState(() {
-    // k = snapshot.key;
-    // });
-    //
-    // showDialog(
-    // context: context,
-    // builder: (ctx) => AlertDialog(
-    // title: Container(
-    // decoration: BoxDecoration(border: Border.all()),
-    // child: TextField(
-    // controller: firstName,
-    // textAlign: TextAlign.center,
-    // decoration: InputDecoration(
-    // hintText: 'title',
-    // ),
-    // ),
-    // ),
-    // content: Container(
-    // decoration: BoxDecoration(border: Border.all()),
-    // child: TextField(
-    // controller: lastName,
-    // textAlign: TextAlign.center,
-    // decoration: InputDecoration(
-    // hintText: 'sub title',
-    // ),
-    // ),
-    // ),
-    // actions: <Widget>[
-    // MaterialButton(
-    // onPressed: () {
-    // Navigator.of(ctx).pop();
-    // },
-    // color: Color.fromARGB(255, 0, 22, 145),
-    // child: Text(
-    // "Cancel",
-    // style: TextStyle(
-    // color: Colors.white,
-    // ),
-    // ),
-    // ),
-    // MaterialButton(
-    // onPressed: () async {
-    // await upd();
-    // Navigator.of(ctx).pop();
-    // },
-    // color: Color.fromARGB(255, 0, 22, 145),
-    // child: Text(
-    // "Update",
-    // style: TextStyle(
-    // color: Colors.white,
-    // ),
-    // ),
-    // ),
-    // ],
-    // ),
-    // );
-    // },
-    // child: Container(
-    // child: Padding(
-    // padding: const EdgeInsets.all(8.0),
-    // child: ListTile(
-    // shape: RoundedRectangleBorder(
-    // side: BorderSide(
-    // color: Colors.white,
-    // ),
-    // borderRadius: BorderRadius.circular(10),
-    // ),
-    // tileColor: Colors.indigo[100],
-    // trailing: IconButton(
-    // icon: Icon(
-    // Icons.delete,
-    // color: Color.fromARGB(255, 255, 0, 0),
-    // ),
-    // onPressed: () {
-    // ref.child(snapshot.key!).remove();
-    // },
-    // ),
-    // title: Text(
-    // l[1],
-    // // 'dd',
-    // style: TextStyle(
-    // fontSize: 25,
-    // fontWeight: FontWeight.bold,
-    // ),
-    // ),
-    // subtitle: Text(
-    // l[0],
-    // // 'dd',
-    //
-    // style: TextStyle(
-    // fontSize: 25,
-    // fontWeight: FontWeight.bold,
-    // ),
-    // ),
-    // ),
-    // ),
-    // ),
-    // );
-    // },
-    //
-    // )
-    //
-    //
+        //           FirebaseAnimatedList(
+        //             shrinkWrap: true,
+        // query: ref,
+        // scrollDirection: Axis.vertical,
+        // itemBuilder: (context, snapshot, animation, index) {
+        // var v =
+        // snapshot.value.toString(); // {subtitle: webfun, title: subscribe}
+        //
+        // g = v.replaceAll(
+        // RegExp("{|}|subtitle: |title: "), ""); // webfun, subscribe
+        // g.trim();
+        //
+        // l = g.split(','); // [webfun,  subscribe}]
+        //
+        // return GestureDetector(
+        // onTap: () {
+        // setState(() {
+        // k = snapshot.key;
+        // });
+        //
+        // showDialog(
+        // context: context,
+        // builder: (ctx) => AlertDialog(
+        // title: Container(
+        // decoration: BoxDecoration(border: Border.all()),
+        // child: TextField(
+        // controller: firstName,
+        // textAlign: TextAlign.center,
+        // decoration: InputDecoration(
+        // hintText: 'title',
+        // ),
+        // ),
+        // ),
+        // content: Container(
+        // decoration: BoxDecoration(border: Border.all()),
+        // child: TextField(
+        // controller: lastName,
+        // textAlign: TextAlign.center,
+        // decoration: InputDecoration(
+        // hintText: 'sub title',
+        // ),
+        // ),
+        // ),
+        // actions: <Widget>[
+        // MaterialButton(
+        // onPressed: () {
+        // Navigator.of(ctx).pop();
+        // },
+        // color: Color.fromARGB(255, 0, 22, 145),
+        // child: Text(
+        // "Cancel",
+        // style: TextStyle(
+        // color: Colors.white,
+        // ),
+        // ),
+        // ),
+        // MaterialButton(
+        // onPressed: () async {
+        // await upd();
+        // Navigator.of(ctx).pop();
+        // },
+        // color: Color.fromARGB(255, 0, 22, 145),
+        // child: Text(
+        // "Update",
+        // style: TextStyle(
+        // color: Colors.white,
+        // ),
+        // ),
+        // ),
+        // ],
+        // ),
+        // );
+        // },
+        // child: Container(
+        // child: Padding(
+        // padding: const EdgeInsets.all(8.0),
+        // child: ListTile(
+        // shape: RoundedRectangleBorder(
+        // side: BorderSide(
+        // color: Colors.white,
+        // ),
+        // borderRadius: BorderRadius.circular(10),
+        // ),
+        // tileColor: Colors.indigo[100],
+        // trailing: IconButton(
+        // icon: Icon(
+        // Icons.delete,
+        // color: Color.fromARGB(255, 255, 0, 0),
+        // ),
+        // onPressed: () {
+        // ref.child(snapshot.key!).remove();
+        // },
+        // ),
+        // title: Text(
+        // l[1],
+        // // 'dd',
+        // style: TextStyle(
+        // fontSize: 25,
+        // fontWeight: FontWeight.bold,
+        // ),
+        // ),
+        // subtitle: Text(
+        // l[0],
+        // // 'dd',
+        //
+        // style: TextStyle(
+        // fontSize: 25,
+        // fontWeight: FontWeight.bold,
+        // ),
+        // ),
+        // ),
+        // ),
+        // ),
+        // );
+        // },
+        //
+        // )
+        //
+        //
 
-
-      // ListView.builder(
+        // ListView.builder(
         //     scrollDirection: Axis.vertical,
         //     shrinkWrap: true,
         //     itemCount: wilaya.length,
@@ -635,11 +669,16 @@ List<User> allusers =[];
         //   },
         // ),
         //   ],
-        ]  ),
+      ]),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => AddEditPage(),),);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddEditPage(),
+            ),
+          );
           debugPrint('Clicked FloatingActionButton Button');
           // Navigator.push(context,
           //     MaterialPageRoute(builder: (context) => DataTableDemo()));
@@ -665,8 +704,9 @@ List<User> allusers =[];
 //   }
 
 }
-Future  addUser(User user)async{
-final docUser = FirebaseFirestore.instance.collection("users").doc();
-user.id = docUser.id;
-await docUser.set(user.toJson());
+
+Future addUser(User user) async {
+  final docUser = FirebaseFirestore.instance.collection("users").doc();
+  user.id = docUser.id;
+  await docUser.set(user.toJson());
 }
